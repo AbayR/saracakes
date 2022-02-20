@@ -1,0 +1,113 @@
+
+<section id="reservation">
+                    <div class="container">
+                        <div class="row">
+                       <!--     <div class="col-lg-8 mx-auto">
+                                <div class="modal-body">
+                                    <section id="reservation-1" class="bg-light" style="padding-top: 150px;"> -->
+                                        <div class="container"> 
+                                            <div class="row">
+                                                <div class="col-lg-12 text-center"
+                                                    style="padding: 10px;padding-top: 0px;padding-bottom: 20px;">
+                                                    <h1 class="section-heading text-uppercase">Order
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <form id="reservationForm" name="reservationForm" action="logged-in.php" method="post">
+                                                        <div class="form-row">
+                                                            <div class="col col-md-6">
+                                                                <div class="form-group"><input class="form-control" onkeypress="return onlyNumberKey(event)" maxlength="11"
+                                                                        type="tel" placeholder="Ваш номер телефона *"
+                                                                        required="" style="height: 66px;padding: 20px;" name="reservation_phone">
+                                                                </div>
+                                                                <div class="form-group"><input class="form-control"
+                                                                        type="date" required=""
+                                                                        style="height: 66px;padding: 20px;" name="reservation_date"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group"><select class="form-control"
+                                                                        style="height: 66px;padding: 20px;" name="reservation_way">
+                                                                        <optgroup label="Выберите тип">
+                                                                            <option value="маленький" selected="">Маленький
+                                                                            </option>
+                                                                            <option value="средний">Средний</option>
+                                                                            <option value="большой">Большой</option>
+                                                                            <option value="Маленький фруктовый">Маленький с фруктовым декором</option>
+                                                                            <option value="Маленький картинка">Маленький с картинкой</option>
+                                                                            <option value="Средний фруктовый">Средний с фруктовым декором</option>
+                                                                            <option value="Средний картинка">Средний с картинкой</option>
+                                                                            <option value="Большой фруктовый">Большой с фруктовым декором</option>
+                                                                            <option value="Большой картинка">Большой с картинкой</option>
+                                                                        </optgroup>
+                                                                    </select></div>
+                                                                <div class="form-group"><select class="form-control"
+                                                                        style="padding: 20px;height: 66px;" name="reservation_type">
+                                                                        <optgroup label="Какой торт:">
+                                                                            <option value="none" selected="">Выберите тип</option>
+                                                                            <option value="КрасныйБархат">Красный Бархат</option>
+                                                                            <option value="ВупиПай">Вупи Пай</option>
+                                                                            <option value="Марджолайн">Марджолайн</option>
+                                                                            <option value="Утряная_Росса">Утряная Росса</option>
+                                                                            <option value="Мясной">Мясной</option>
+                                                                            <option value="Сырник">Сырник</option>
+                                                                            <option value="Молочная_Девочка">Молочная Девочка</option>
+                                                                            <option value="Сникерс">Сникерс</option>
+                                                                            <option value="contactwithadmin">Свяжите меня с Админом</option>
+                                                                        </optgroup>
+                                                                    </select></div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-lg-12 text-center" style="padding: 10px;">
+                                                                <div id="reservationSuccess"></div><input
+                                                                    class="btn btn-primary btn-xl text-uppercase"
+                                                                    id="reservationButton" name="reservation"
+                                                                    type="submit" value="Заказать" />
+																<button class="btn btn-success" onclick=" window.open('https://forms.gle/Jz4wJAoqZR6GU53aA','_blank')"> Обратная связь</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <?php
+                                                    
+    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['reservation']))
+                                                        {
+                                                            $reserve_phone=$reserve_date=$reserve_way=$reserve_type="";
+                                                            //$username=$_POST('name_message');
+                                                            $reserve_phone = trim($_POST["reservation_phone"]);
+                                                            
+                                                            $reserve_date = trim($_POST["reservation_date"]);
+                                                            
+                                                            $reserve_way = trim($_POST["reservation_way"]);
+                                                            
+                                                            $reserve_type = trim($_POST["reservation_type"]);
+
+                                                            if (!empty($reserve_type) && !empty($reserve_date) && !empty($reserve_way) && !empty($reserve_type)){
+                                                                $UserID = $_SESSION["id"];
+                                                                $sql_reserve = "INSERT INTO reservations(UserID,phone,date,way,type)VALUES ('$UserID','$reserve_phone','$reserve_date','$reserve_way','$reserve_type')";
+                                                                if (mysqli_query($link, $sql_reserve)) {
+                                                                    echo '<script>alert("Reserved");</script>';
+                                                                } else {
+                                                                    echo "Error: " . $sql_reserve . "" . mysqli_error($link);
+                                                                }
+                                                            }
+                                                            
+                                                        }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </section>
+
+               <!-- </div>
+            </div>
+        </div>
+    </div>-->
+    <!--//reservation-->
